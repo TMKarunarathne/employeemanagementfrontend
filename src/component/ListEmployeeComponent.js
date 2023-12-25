@@ -31,6 +31,7 @@ const ListEmployeeComponent = () => {
                     <th>Employee First Name</th>
                     <th>Employee Last Name</th>
                     <th>Employee Email</th>
+                    <th>Employee Phone Number</th>
                     <th>Actions</th>
                 </thead>
                 <tbody>
@@ -40,6 +41,7 @@ const ListEmployeeComponent = () => {
                             <td>{employee.firstName}</td>
                             <td>{employee.lastName}</td>
                             <td>{employee.email}</td>
+                            <td>{employee.phoneNumber}</td>
                             <td>
                                 <Link to={`/add-employee/${employee.id}`} className='btn btn-info' href="">Update</Link> {" "}
                                 <a onClick={(e) => deleteEmployee(e, employee.id)} className='btn btn-danger'>Delete</a>

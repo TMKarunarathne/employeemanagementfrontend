@@ -7,16 +7,17 @@ const AddEmployeeComponent = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const employeeData = { firstName, lastName, email }; //bundle the inpute from user
+    const employeeData = { firstName, lastName, email, phoneNumber }; //bundle the inpute from user
 
     /**send data to api and navigate when succesful */
     function saveEmployee(e) {
         e.preventDefault();
 
-        if (employeeData.firstName !== "" && employeeData.lastName !== "" && employeeData.email != "") {
+        if (employeeData.firstName !== "" && employeeData.lastName !== "" && employeeData.email != "" && employeeData.phoneNumber != "") {
             /**If id is present in the parameter, it should update else it should save */
             if (id) {
                 EmployeeService.updateEmployee(id, employeeData)
@@ -47,6 +48,7 @@ const AddEmployeeComponent = () => {
                     setFirstName(res.data.firstName);
                     setLastName(res.data.lastName);
                     setEmail(res.data.email);
+                    setPhoneNumber(res.data.phoneNumber);
                 })
                 .catch(e => console.log(e));
         }
@@ -77,6 +79,12 @@ const AddEmployeeComponent = () => {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         type="email" placeholder='Enter Email' />
+                                </div>
+                                <div className='form-group mb-2'>
+                                    <input className='form-control'
+                                        value={phoneNumber}
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                        type="email" placeholder='Enter Phone Number' />
                                 </div>
                                 <button onClick={(e) => saveEmployee(e)} className='btn btn-success'>Save</button> {" "}
                                 <Link to={"/employee"} className='btn btn-danger' href="">Cancel</Link>
